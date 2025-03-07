@@ -81,7 +81,7 @@ Some improvements to be made:
 
 Current errors in the project that need to be fixed/investigated:
 
-Discussion:
+Discussion (seems to be a bug in the library):
 https://github.com/TanStack/query/issues/6591
 
 ``` 
