@@ -23,6 +23,8 @@ app.get('/health', (req, res) => {
   res.statusCode(200);
 })
 
+app.use(logger(NODE_ENV));
+
 app.use('/api/auth', AuthController);
 
 app.use(authMiddleware)
@@ -40,7 +42,7 @@ app.get('/profile', (req, res, next) => {
   }
 })
 
-app.use(logger(NODE_ENV));
+
 
 
 const port = 8080;

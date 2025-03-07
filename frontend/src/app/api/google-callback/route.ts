@@ -28,7 +28,6 @@ export async function GET(req) {
   })
   cookieStore.set('refreshToken', data.refreshToken, {
     httpOnly: true,
-    path: '/api/auth/refresh',
     // ...
   })
 

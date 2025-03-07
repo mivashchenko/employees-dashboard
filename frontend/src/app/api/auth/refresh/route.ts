@@ -23,6 +23,7 @@ export async function POST() {
     }
 
     const data = await response.json();
+
     cookieStore.set('token', data.idToken);
 
     return NextResponse.next();
