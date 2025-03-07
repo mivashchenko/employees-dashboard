@@ -9,9 +9,10 @@ import {DashboardTableFilter} from "@/app/_components/table/filter";
 import {DashboardTableViewOptions} from "@/app/_components/table/view-options";
 import {FormDrawerDialog} from "@/components/form-drawer-dialog";
 import {NewEmployeeForm} from "@/app/_components/new-employee-form";
-import {FaFilePdf, FaPlus} from "react-icons/fa6";
+import {FaPlus} from "react-icons/fa6";
 import {useSuspenseQuery} from "@tanstack/react-query";
 import {queryDepartments} from "@/data/query/query-departments";
+import {PiFileCsvDuotone} from "react-icons/pi";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -89,7 +90,7 @@ export function DashboardTableToolbar<TData>({
 
       </div>
       <div className="flex items-center justify-between space-x-2">
-        <Button onClick={onExportToPdf}><FaFilePdf/></Button>
+        <Button onClick={onExportToPdf}><PiFileCsvDuotone /></Button>
         <FormDrawerDialog
           title={'Employees'}
           button={<Button><FaPlus/></Button>}

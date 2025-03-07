@@ -3,9 +3,11 @@
 import {NewEmployeeSchema} from "@/schemas";
 import {fetcher} from "@/shared/api/fetcher";
 
-export const editEmployee = async (values: typeof NewEmployeeSchema & {id: string}) => {
+export const editEmployee = async (values: typeof NewEmployeeSchema & { id: string }) => {
 
   const validatedFields = NewEmployeeSchema.safeParse(values);
+
+  console.log(values, 2222222222222222)
 
   if (!validatedFields.success) {
     return {error: 'Invalid fields!'}
@@ -15,15 +17,13 @@ export const editEmployee = async (values: typeof NewEmployeeSchema & {id: strin
 
   try {
     await fetcher(`/employees/${values.id}`, {
-    headers: {
       method: 'PUT',
-    },
-    body: JSON.stringify({email, name, departmentId}),
-  });
+      body: JSON.stringify({email, name, departmentId}),
+    });
 
-    return {success: 'New employee created!'}
+    return {success: 'Employee info changed!'}
   } catch (error) {
-    console.log('Failed to create new employee:', error)
-    return {error: 'Failed to create new employee!'}
+    console.log('Failed to change employee info:', error)
+    return {error: 'Failed to change employee info!'}
   }
 }

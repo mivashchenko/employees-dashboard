@@ -1,3 +1,5 @@
+'use server'
+
 import {fetcher} from "@/shared/api/fetcher";
 import {EmployeesResponse} from "@/types";
 

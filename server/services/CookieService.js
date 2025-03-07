@@ -5,7 +5,7 @@
       domain: process.env.COOKIE_DOMAIN,
       httpOnly: true,
       secure: false,
-      // sameSite: 'lax',
+      sameSite: 'lax',
       path: '/api/auth/refresh',
       maxAge: 5 * 365 * 24 * 60 * 60 * 1000
     }
@@ -17,7 +17,7 @@
       domain: process.env.COOKIE_DOMAIN,
       httpOnly: true,
       secure: false,
-      // sameSite: 'lax',
+      sameSite: 'lax',
       path: '/api/auth/logout',
       maxAge: 5 * 365 * 24 * 60 * 60 * 1000
     }
@@ -29,7 +29,7 @@
       domain: process.env.COOKIE_DOMAIN,
       httpOnly: true,
       secure: false,
-      // sameSite: 'lax',
+      sameSite: 'lax',
       path: '/',
       maxAge: 60 * 60 * 1000
     }

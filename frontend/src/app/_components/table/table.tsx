@@ -28,6 +28,7 @@ import {getQueryClient} from "@/lib/react-query/client";
 import {newEmployee} from "@/actions/new-employee";
 import {createParamsObject, createSortingParams, exportJsonToCSV, prepareEmployeesDataForExport} from "@/utils";
 import {getEmployees} from "@/data/get-employees";
+import {editEmployee} from "@/actions/edit-employee";
 
 export const DashboardTable = () => {
   const queryClient = getQueryClient()
@@ -106,9 +107,32 @@ export const DashboardTable = () => {
     queryClient,
   )
 
+    const {
+    mutate: handleEditEmployee,
+  } = useMutation(
+    {
+      mutationFn: editEmployee,
+      onMutate: (variables) => {
+        console.log('Mutation started with:', variables)
+      },
+      onSuccess: (data) => {
+        console.log('Mutation successful:', data)
+
+        queryClient.invalidateQueries({queryKey: ['employees', params]})
+      },
+      onError: (error) => {
+        console.error('Mutation error:', error);
+      },
+      onSettled: () => {
+        console.log('Mutation settled (either success or error)')
+      },
+    },
+    queryClient,
+  )
+
   const table = useReactTable({
     data: employees?.data,
-    columns: dashboardTableColumns({onDeleteEmployee: handleDeleteEmployee}),
+    columns: dashboardTableColumns({onDeleteEmployee: handleDeleteEmployee, onEditEmployee: handleEditEmployee}),
     getCoreRowModel: getCoreRowModel(),
     rowCount: employees.totalEmployees,
     manualPagination: true,

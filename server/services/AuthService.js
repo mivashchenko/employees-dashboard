@@ -7,7 +7,6 @@ class AuthService {
   static SCOPES = ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'];
 
   constructor() {
-    console.log(AuthService.REDIRECT_URI, 'AuthService.REDIRECT_URI')
 
     this.oAuth2Client = new google.auth.OAuth2(
       AuthService.CLIENT_ID,

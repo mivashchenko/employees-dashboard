@@ -14,12 +14,22 @@ import {EditEmployeeForm} from "@/app/_components/edit-employee-form";
 interface DashboardTableActionsDropdownProps {
   data: Employee;
   onDelete: (id: number) => void;
+  onEditEmployee: (values: unknown) => void;
 }
 
 export const DashboardTableActionsDropdown = ({
                                                 data,
-                                                onDelete
+                                                onDelete,
+                                                onEditEmployee
                                               }: DashboardTableActionsDropdownProps) => {
+
+  const renderTempEditEmployeeFormTrigger = () => {
+    return <div
+      className={'hover:bg-accent relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&>svg]:size-4 [&>svg]:shrink-0'}
+    >
+      Edit Employee
+    </div>
+  }
 
   return <DropdownMenu>
     <DropdownMenuTrigger asChild>
@@ -30,16 +40,11 @@ export const DashboardTableActionsDropdown = ({
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end">
       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-      <DropdownMenuItem
-        onClick={() => navigator.clipboard.writeText(String(data.id))}
-      >
-        Copy data
-      </DropdownMenuItem>
       <DropdownMenuSeparator/>
       <FormDrawerDialog
         title={'Employees'}
-        button={<div>Edit employee</div>}
-        form={<EditEmployeeForm defaultValues={data}/>}
+        button={renderTempEditEmployeeFormTrigger()}
+        form={<EditEmployeeForm defaultValues={data} onSubmit={onEditEmployee}/>}
       />
       <DropdownMenuItem onClick={() => onDelete(data.id)}>Delete</DropdownMenuItem>
     </DropdownMenuContent>

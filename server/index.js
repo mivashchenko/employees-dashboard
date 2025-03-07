@@ -2,9 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const { controllers } = require('./controllers/index.js');
-const AuthService = require('./services/AuthService.js');
 const {logger} = require("./middlewares");
+const {authMiddleware} = require("./middlewares");
+const AuthController = require("./controllers/AuthController");
+const EmployeesController = require("./controllers/EmployeesController");
+const DepartmentsController = require("./controllers/DepartmentsController");
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const app = express();
@@ -21,29 +23,12 @@ app.get('/health', (req, res) => {
   res.statusCode(200);
 })
 
-app.use('/api', controllers);
+app.use('/api/auth', AuthController);
 
-app.use(async (req, res, next) => {
+app.use(authMiddleware)
 
-  // const idToken = req.cookies[CookieService.ID_TOKEN_COOKIE.name];
-  const idToken = req.cookies['token'];
-
-  if (!idToken) {
-    console.log('No idToken');
-    return res.status(401).json({error: 'Unauthorized'});
-  }
-
-  try {
-    const authService = new AuthService();
-    const userData = await authService.getUserData(idToken);
-    res.locals.user = userData;
-    console.log('User data:', userData);
-    return next();
-  } catch (error) {
-    console.log('ID token invalid:', error);
-    return res.sendStatus(401);
-  }
-})
+app.use('/api/employees', EmployeesController);
+app.use('/api/departments', DepartmentsController);
 
 app.get('/profile', (req, res, next) => {
   try {

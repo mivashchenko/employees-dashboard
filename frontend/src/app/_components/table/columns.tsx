@@ -6,7 +6,7 @@ import {Employee} from "@/types";
 import {DashboardTableColumnHead} from "@/app/_components/table/column-head";
 import {DashboardTableActionsDropdown} from "@/app/_components/table/actions-dropdown";
 
-export const dashboardTableColumns: ({onDeleteEmployee}) => ColumnDef<Employee>[] = ({onDeleteEmployee}) => [
+export const dashboardTableColumns: ({onDeleteEmployee, onEditEmployee}) => ColumnDef<Employee>[] = ({onDeleteEmployee, onEditEmployee}) => [
   {
     id: "select",
     header: ({table}) => (
@@ -80,7 +80,7 @@ export const dashboardTableColumns: ({onDeleteEmployee}) => ColumnDef<Employee>[
     cell: ({row}) => {
       const data = row.original
       return (
-        <DashboardTableActionsDropdown data={data} onDelete={onDeleteEmployee}/>
+        <DashboardTableActionsDropdown data={data} onDelete={onDeleteEmployee} onEditEmployee={onEditEmployee}/>
       )
     },
   }
