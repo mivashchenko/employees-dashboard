@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type {Metadata} from "next";
+import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
+import ReactQueryProvider from "@/providers/react-query-provider";
+import {dehydrate, HydrationBoundary} from "@tanstack/react-query";
+import {getQueryClient} from "@/lib/react-query/client";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,17 +21,24 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const queryClient = getQueryClient()
+
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <body
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+    <ReactQueryProvider>
+      <HydrationBoundary state={dehydrate(queryClient)}>
         {children}
-      </body>
+      </HydrationBoundary>
+    </ReactQueryProvider>
+    </body>
     </html>
   );
 }
