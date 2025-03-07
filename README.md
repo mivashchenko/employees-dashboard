@@ -1,7 +1,5 @@
 node v 20
 
-
-
 ## Backend setup
 
 ### Prerequisites

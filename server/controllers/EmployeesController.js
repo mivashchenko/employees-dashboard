@@ -8,17 +8,17 @@ const EmployeesController = express.Router();
 EmployeesController.get('/', async (req, res) => {
   try {
     const {
-      name, email, departmentIds, sortBy = 'id', sortOrder = 'asc', page = 1, // Default to page 1 if not specified
-      pageSize = 10, // Default to 10 items per page
+      name, email, departmentIds, sortBy = 'id', sortOrder = 'asc', page = 1,
+      pageSize = 10,
     } = req.query;
 
     const departmentIdsArray = Array.isArray(departmentIds) ? departmentIds : departmentIds ? [...departmentIds.split(',')] : [];
 
     const where = {};
-    if (name) where.name = {contains: name, mode: 'insensitive'}; // Case-insensitive search
+    if (name) where.name = {contains: name, mode: 'insensitive'};
     if (email) where.email = {contains: email, mode: 'insensitive'};
     if (departmentIdsArray.length > 0) {
-      where.departmentId = {in: departmentIdsArray.map(id => parseInt(id, 10))}; // Convert string IDs to integers
+      where.departmentId = {in: departmentIdsArray.map(id => parseInt(id, 10))};
     }
 
     const skip = (parseInt(page, 10) - 1) * parseInt(pageSize, 10);
@@ -90,7 +90,7 @@ EmployeesController.put('/:id', async (req, res) => {
       },
     });
 
-    res.json(updatedEmployee); // Send the updated employee back
+    res.json(updatedEmployee);
   } catch (error) {
     console.error(error);
     res.status(500).json({error: 'Something went wrong'});
