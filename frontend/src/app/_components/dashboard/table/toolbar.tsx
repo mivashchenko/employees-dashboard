@@ -5,8 +5,8 @@ import {X} from "lucide-react"
 
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
-import {DashboardTableFilter} from "@/app/_components/table/filter";
-import {DashboardTableViewOptions} from "@/app/_components/table/view-options";
+import {DashboardTableFilter} from "@/app/_components/dashboard/table/filter";
+import {DashboardTableViewOptions} from "@/app/_components/dashboard/table/view-options";
 import {FormDrawerDialog} from "@/components/form-drawer-dialog";
 import {NewEmployeeForm} from "@/app/_components/new-employee-form";
 import {FaPlus} from "react-icons/fa6";

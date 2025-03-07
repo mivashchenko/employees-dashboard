@@ -1,4 +1,4 @@
-import {DashboardEmployees} from "@/app/_components/dashboard-employees";
+import {Dashboard} from "@/app/_components/dashboard/dashboard-employees";
 import {getQueryClient} from "@/lib/react-query/client";
 import {queryEmployees} from "@/data/query/query-employees";
 import {queryDepartments} from "@/data/query/query-departments";
@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <DashboardEmployees/>
+      <Dashboard/>
     </HydrationBoundary>
   );
 }

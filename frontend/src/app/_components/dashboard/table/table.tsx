@@ -17,10 +17,10 @@ import {
   VisibilityState
 } from "@tanstack/react-table";
 
-import {dashboardTableColumns} from "@/app/_components/table/columns";
+import {dashboardTableColumns} from "@/app/_components/dashboard/table/columns";
 import {Employee} from "@/types";
-import {DashboardTableToolbar} from "@/app/_components/table/toolbar";
-import {DashboardTablePagination} from "@/app/_components/table/pagination";
+import {DashboardTableToolbar} from "@/app/_components/dashboard/table/toolbar";
+import {DashboardTablePagination} from "@/app/_components/dashboard/table/pagination";
 import {deleteEmployee} from "@/actions/delete-employee";
 import {useMutation, useSuspenseQuery} from "@tanstack/react-query";
 import {queryEmployees} from "@/data/query/query-employees";
@@ -252,5 +252,3 @@ export const DashboardTable = () => {
     <DashboardTablePagination table={table}/>
   </div>
 }
-
-export default DashboardTable

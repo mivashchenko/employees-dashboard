@@ -1,10 +1,8 @@
 'use client'
 import {Card, CardContent, CardHeader} from "@/components/ui/card";
-import {lazy} from "react";
+import {DashboardTable} from "@/app/_components/dashboard/table/table";
 
-const Dashboard = lazy(() => import("@/app/_components/table/table"))
-
-export function DashboardEmployees() {
+export function Dashboard() {
 
   return (
     <div className='flex w-full flex-col'>
@@ -14,7 +12,7 @@ export function DashboardEmployees() {
         </CardHeader>
         <Card className='pt-6'>
           <CardContent>
-            <Dashboard/>
+            <DashboardTable/>
           </CardContent>
         </Card>
       </div>

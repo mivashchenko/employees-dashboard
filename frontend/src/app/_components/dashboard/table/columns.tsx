@@ -3,8 +3,8 @@ import {Checkbox} from "@/components/ui/checkbox";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import {Employee} from "@/types";
-import {DashboardTableColumnHead} from "@/app/_components/table/column-head";
-import {DashboardTableActionsDropdown} from "@/app/_components/table/actions-dropdown";
+import {DashboardTableColumnHead} from "@/app/_components/dashboard/table/column-head";
+import {DashboardTableActionsDropdown} from "@/app/_components/dashboard/table/actions-dropdown";
 
 export const dashboardTableColumns: ({onDeleteEmployee, onEditEmployee}) => ColumnDef<Employee>[] = ({onDeleteEmployee, onEditEmployee}) => [
   {
