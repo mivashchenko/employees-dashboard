@@ -63,13 +63,13 @@ Some improvements to be made:
 1.	Add tests.
 2.	Implement lightweight global state management (e.g., Zustand) to keep dashboard filters accessible from any component.
    - This would improve React Query usage by making data fetching more efficient and cleaner; help to avoid props drilling. Currently, data is re-fetched with filter parameters after a mutation to ensure cache consistency:
-   - ```typescript
-     onSuccess: (data) => {
+```typescript
+        onSuccess: (data) => {
         console.log('Mutation successful:', data)
 
         queryClient.invalidateQueries({queryKey: ['employees', params]})
       }
-    ```
+```
 3.	Add a global notification system (using toasts) to notify users about the success or failure of operations.
 4.  Finalize the error-handling strategy.
 5.	Enable TypeScript strict mode and resolve all TypeScript errors.
