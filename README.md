@@ -76,6 +76,7 @@ Some improvements to be made:
 6.	Optimize the project structure.
 7.	Improve naming conventions.
 8.	Encapsulate React Query logic within custom hooks.
+9. Optimize re-usage of different code parts.
 
 
 Current errors in the project that need to be fixed/investigated:
